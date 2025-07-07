@@ -7,5 +7,5 @@ use Illuminate\Http\Request;
 
 class SchoolController extends Controller
 {
-    //
+    //paler
 }
