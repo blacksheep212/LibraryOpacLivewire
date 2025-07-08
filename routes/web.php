@@ -1,86 +1,72 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Livewire\Volt\Volt;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\StaffController;
 
-// Home Route
-Route::get('/', function () {
-    return view('admin.admin');
-})->name('home');
-
-// Admin Routes Group
-Route::prefix('admin')->middleware(['auth', 'verified', 'admin'])->group(function () {
-    // Dashboard
-    Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-
-    // Add Items (matches your nav menu)
-    Route::get('/add', [AdminController::class, 'add'])->name('admin.add');
-
-    // User Management (corrected from 'user' to 'users')
-    Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
-
-    // School Information
-    Route::get('/school', [AdminController::class, 'school'])->name('admin.school');
-
-    // Update School Information
-    Route::get('/update-school', [AdminController::class, 'updateSchool'])->name('admin.update-school');
-
-    // Account Settings
-    Route::get('/account-settings', [AdminController::class, 'accountSettings'])->name('admin.account-settings');
-
-    // History Log
-    Route::get('/history', [AdminController::class, 'history'])->name('admin.history');
-});
-    // Manage Accounts
-    Route::get('/manage-accounts', function () {
-        return view('admin.manageAccount');
-    })->name('admin.manage-accounts');
-
-    // School Information
-    Route::get('/school', function () {
-        return view('admin.school');
-    })->name('admin.school');
-
-    // Update School Information
-    Route::get('/update-school', function () {
-        return view('admin.updateSchoolInformation');
-    })->name('admin.update-school');
-
-    // Update User
-    Route::get('/update-user', function () {
-        return view('admin.updateUser');
-    })->name('admin.update-user');
-
-    // User Management
-    Route::get('/users', function () {
-        return view('admin.user');
-    })->name('admin.users');
-});
-
-// Staff Routes Group
-Route::prefix('staff')->middleware(['auth', 'verified'])->group(function () {
+// Admin Routes
+Route::prefix('admin')->group(function () {
+    // Dashboard - Make this the default admin route
     Route::get('/', function () {
-        return view('staff.staff');
-    })->name('staff.dashboard');
-
-    Route::post('/borrow', [StaffController::class, 'processBorrow'])
-        ->name('staff.borrow');
+        return view('admin.admin');
+    })->name('admin.dashboard');
 
 
-// Common Authenticated Routes
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::view('dashboard', 'dashboard')->name('dashboard');
-    Route::redirect('settings', 'settings/profile');
+    // Add routes
+    Route::get('/add', function () {
+        return view('add.add');
+    })->name('admin.add');
 
-    Volt::route('settings/profile', 'settings.profile')
-        ->name('settings.profile');
-    Volt::route('settings/password', 'settings.password')
-        ->name('settings.password');
-    Volt::route('settings/appearance', 'settings.appearance')
-        ->name('settings.appearance');
+    Route::get('/add/books', function () {
+        return view('add.book');
+    })->name('admin.add.books');
+
+    Route::get('/add/electronic', function () {
+        return view('add.electronic');
+    })->name('admin.add.electronic');
+
+    Route::get('/add/periodical', function () {
+        return view('add.periodical');
+    })->name('admin.add.periodical');
+
+    Route::get('/add/thesis', function () {
+        return view('add.thesis');
+    })->name('admin.add.thesis');
+
+    Route::get('/add/user', function () {
+        return view('add.user');
+    })->name('admin.add.user');
+
+    Route::get('/add/school', function () {
+        return view('add.school');
+    })->name('admin.add.school');
+
+    // Update routes
+    Route::get('/update', function () {
+        return view('update.update');
+    })->name('admin.update');
+
+    Route::get('/update/user', function () {
+        return view('update.user');
+    })->name('admin.update.user');
+
+    Route::get('/update/school-info', function () {
+        return view('update.school');
+    })->name('admin.update.school-info');
+
+    // Accounts routes
+    Route::get('/accounts', function () {
+        return view('accounts.account');
+    })->name('admin.accounts');
+
+    Route::get('/accounts/manage', function () {
+        return view('accounts.manage');
+    })->name('admin.accounts.manage');
+
+    // Other routes
+    Route::get('/account-settings', function () {
+        return view('admin.settings'); // Updated to a more specific view
+    })->name('admin.account-settings');
+
+    Route::get('/history', function () {
+        return view('admin.history'); // Updated to a more specific view
+    })->name('admin.history');
 });
-
-// Authentication Routes
-require __DIR__.'/auth.php';
