@@ -13,30 +13,26 @@ Route::get('/', function () {
 // Admin Routes Group
 Route::prefix('admin')->middleware(['auth', 'verified', 'admin'])->group(function () {
     // Dashboard
-    Route::get('/', function () {
-        return view('admin.admin');
-    })->name('admin.dashboard');
+    Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
-    // Accounts
-    Route::get('/accounts', function () {
-        return view('admin.accounts');
-    })->name('admin.accounts');
+    // Add Items (matches your nav menu)
+    Route::get('/add', [AdminController::class, 'add'])->name('admin.add');
+
+    // User Management (corrected from 'user' to 'users')
+    Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
+
+    // School Information
+    Route::get('/school', [AdminController::class, 'school'])->name('admin.school');
+
+    // Update School Information
+    Route::get('/update-school', [AdminController::class, 'updateSchool'])->name('admin.update-school');
 
     // Account Settings
-    Route::get('/account-settings', function () {
-        return view('admin.accountSettingAdmin.accountSettingAi');
-    })->name('admin.account-settings');
+    Route::get('/account-settings', [AdminController::class, 'accountSettings'])->name('admin.account-settings');
 
-    // Add Items
-    Route::get('/add', function () {
-        return view('admin.add');
-    })->name('admin.add');
-
-    // History
-    Route::get('/history', function () {
-        return view('admin.history');
-    })->name('admin.history');
-
+    // History Log
+    Route::get('/history', [AdminController::class, 'history'])->name('admin.history');
+});
     // Manage Accounts
     Route::get('/manage-accounts', function () {
         return view('admin.manageAccount');
@@ -71,7 +67,7 @@ Route::prefix('staff')->middleware(['auth', 'verified'])->group(function () {
 
     Route::post('/borrow', [StaffController::class, 'processBorrow'])
         ->name('staff.borrow');
-});
+
 
 // Common Authenticated Routes
 Route::middleware(['auth', 'verified'])->group(function () {
