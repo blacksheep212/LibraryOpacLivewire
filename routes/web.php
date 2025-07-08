@@ -2,71 +2,53 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Admin Routes
 Route::prefix('admin')->group(function () {
-    // Dashboard - Make this the default admin route
+    // Dashboard - points to existing admin.blade.php
     Route::get('/', function () {
-        return view('admin.admin');
-    })->name('admin.dashboard');
+        return view('admin.admin'); // resources/views/admin/admin.blade.php
+    })->name('admin.dashboard'); // Changed to match your navigation
 
-
-    // Add routes
+    // Add routes - adjusted to match your actual files
     Route::get('/add', function () {
-        return view('add.add');
+        return view('add.add'); // resources/views/add/add.blade.php
     })->name('admin.add');
 
-    Route::get('/add/books', function () {
-        return view('add.book');
-    })->name('admin.add.books');
-
-    Route::get('/add/electronic', function () {
-        return view('add.electronic');
-    })->name('admin.add.electronic');
-
-    Route::get('/add/periodical', function () {
-        return view('add.periodical');
-    })->name('admin.add.periodical');
-
-    Route::get('/add/thesis', function () {
-        return view('add.thesis');
-    })->name('admin.add.thesis');
-
     Route::get('/add/user', function () {
-        return view('add.user');
+        return view('add.user'); // resources/views/add/user.blade.php
     })->name('admin.add.user');
 
     Route::get('/add/school', function () {
-        return view('add.school');
+        return view('add.school'); // resources/views/add/school.blade.php
     })->name('admin.add.school');
 
-    // Update routes
+    // Update routes - using your existing files
     Route::get('/update', function () {
-        return view('update.update');
+        return view('update.update'); // resources/views/update/update.blade.php
     })->name('admin.update');
 
     Route::get('/update/user', function () {
-        return view('update.user');
+        return view('update.user'); // resources/views/update/user.blade.php
     })->name('admin.update.user');
 
     Route::get('/update/school-info', function () {
-        return view('update.school');
+        return view('update.school'); // resources/views/update/school.blade.php
     })->name('admin.update.school-info');
 
-    // Accounts routes
+    // Account routes - using your existing files
     Route::get('/accounts', function () {
-        return view('accounts.account');
+        return view('accounts.account'); // resources/views/accounts/account.blade.php
     })->name('admin.accounts');
 
     Route::get('/accounts/manage', function () {
-        return view('accounts.manage');
+        return view('accounts.manage'); // resources/views/accounts/manage.blade.php
     })->name('admin.accounts.manage');
 
-    // Other routes
+    // Other routes - need to be created
     Route::get('/account-settings', function () {
-        return view('admin.settings'); // Updated to a more specific view
+        return view('admin.settings'); // Need to create resources/views/admin/settings.blade.php
     })->name('admin.account-settings');
 
     Route::get('/history', function () {
-        return view('admin.history'); // Updated to a more specific view
+        return view('admin.history'); // Need to create resources/views/admin/history.blade.php
     })->name('admin.history');
 });
