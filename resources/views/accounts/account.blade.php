@@ -1,177 +1,178 @@
-<div class="container mx-auto px-4 py-6">
-    <div class="bg-white rounded-lg shadow-md p-6">
-        <h1 class="text-2xl font-bold text-usepmaroon mb-4">Account Management</h1>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    .profile-container {
+        transition: all 0.3s ease;
+    }
+    .profile-container:hover {
+        transform: translateY(-2px);
+    }
+    .remove-btn {
+        transition: all 0.2s ease;
+    }
+    .remove-btn:hover {
+        transform: scale(1.1);
+    }
+    .input-focus:focus {
+        box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.2);
+    }
+</style>
 
-        <div class="mb-6">
-            <p class="text-gray-600">View and manage user accounts in the system.</p>
+<body class="bg-gray-50 font-sans">
+<div id="account-settings" class="p-8 max-w-5xl mx-auto">
+    <!-- Header Section -->
+    <div class="mb-8">
+        <h2 class="text-3xl font-bold text-usepmaroon">Add Staff Account</h2>
+        <p class="text-gray-500 mt-1">Add staff profile details</p>
+    </div>
+
+    <div class="bg-white  rounded-xl shadow-usep">
+        <!-- Profile Picture Section -->
+        <div class="mb-8">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">Profile Details</h3>
+            <div class="flex flex-col items-start space-y-4">
+                <div class="profile-container relative group">
+                    <!-- Image Preview -->
+                    <div id="image-preview" class="hidden">
+                        <img id="preview-image" src="#" alt="Profile Preview" class="w-32 h-32 rounded-full object-cover border-4 border-usepgold shadow-lg transform transition duration-300 group-hover:scale-105">
+                        <button onclick="removeImage()" class="remove-btn absolute -top-2 -right-2 bg-usepmaroon text-white rounded-full w-8 h-8 flex items-center justify-center shadow-md hover:bg-red-700">
+                            <i class="fas fa-times text-sm"></i>
+                        </button>
+                    </div>
+                    <!-- Placeholder -->
+                    <div id="image-placeholder" class="w-32 h-32 rounded-full bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center shadow-inner border-2 border-dashed border-gray-300 hover:border-usepmaroon transition-colors">
+                        <i class="fas fa-user text-gray-400 text-4xl"></i>
+                    </div>
+                </div>
+                <div class="flex space-x-3">
+                    <label class="px-4 py-2 bg-usepmaroon text-white rounded-lg hover:bg-usepmaroon/90 cursor-pointer flex items-center shadow-sm transition-all hover:shadow">
+                        <i class="fas fa-upload mr-2"></i>Upload new photo
+                        <input type="file" id="image-upload" class="hidden" accept="image/jpeg,image/png,image/gif">
+                    </label>
+                    <button onclick="removeImage()" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 flex items-center shadow-sm transition-all hover:shadow">
+                        <i class="fas fa-redo mr-2"></i>Reset
+                    </button>
+                </div>
+                <p class="text-sm text-gray-500">Allowed JPG, GIF or PNG. Max size of 2MB</p>
+            </div>
         </div>
 
-        <!-- Account Search and Filters -->
-        <div class="mb-6 space-y-4">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                <div class="flex-1">
+        <!-- Form Fields -->
+        <div class="space-y-6">
+            <!-- First Row -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                    <input type="text" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-usepmaroon focus:border-usepmaroon shadow-sm input-focus transition">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Middle Name</label>
+                    <input type="text" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-usepmaroon focus:border-usepmaroon shadow-sm input-focus transition">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                    <input type="text" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-usepmaroon focus:border-usepmaroon shadow-sm input-focus transition">
+                </div>
+            </div>
+
+            <!-- Second Row -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Position</label>
+                    <input type="text" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-usepmaroon focus:border-usepmaroon shadow-sm input-focus transition">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">E-mail</label>
+                    <input type="email" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-usepmaroon focus:border-usepmaroon shadow-sm input-focus transition">
+                </div>
+            </div>
+
+            <!-- Third Row -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Mobile Number</label>
                     <div class="flex">
-                        <input type="text" id="account_search" name="account_search" placeholder="Search accounts..." class="flex-1 rounded-l-md border-gray-300 shadow-sm focus:border-usepmaroon focus:ring focus:ring-usepmaroon focus:ring-opacity-50">
-                        <button type="button" class="bg-usepmaroon text-white px-4 py-2 rounded-r-md hover:bg-usepmaroon/90">
-                            <i class="fa-solid fa-search"></i>
+                        <select class="w-1/4 px-3 py-2.5 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-usepmaroon focus:border-usepmaroon bg-gray-50">
+                            <option>PH (+63)</option>
+                        </select>
+                        <input type="tel" class="w-3/4 px-4 py-2.5 border-t border-r border-b border-gray-300 rounded-r-lg focus:ring-2 focus:ring-usepmaroon focus:border-usepmaroon shadow-sm input-focus transition" value="">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fourth Row -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Username</label>
+                    <input type="text" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-usepmaroon focus:border-usepmaroon shadow-sm input-focus transition">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                    <div class="relative">
+                        <input type="password" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-usepmaroon focus:border-usepmaroon shadow-sm input-focus transition" value="">
+                        <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-usepmaroon">
+                            <i class="fas fa-eye"></i>
                         </button>
                     </div>
                 </div>
-
-                <div class="flex flex-col md:flex-row gap-2 md:gap-4">
-                    <select id="role_filter" class="rounded-md border-gray-300 shadow-sm focus:border-usepmaroon focus:ring focus:ring-usepmaroon focus:ring-opacity-50">
-                        <option value="">All Roles</option>
-                        <option value="student">Student</option>
-                        <option value="faculty">Faculty</option>
-                        <option value="staff">Staff</option>
-                        <option value="admin">Administrator</option>
-                    </select>
-
-                    <select id="status_filter" class="rounded-md border-gray-300 shadow-sm focus:border-usepmaroon focus:ring focus:ring-usepmaroon focus:ring-opacity-50">
-                        <option value="">All Statuses</option>
-                        <option value="active">Active</option>
-                        <option value="inactive">Inactive</option>
-                        <option value="suspended">Suspended</option>
-                    </select>
-                </div>
             </div>
         </div>
 
-        <!-- Accounts Table -->
-        <div class="overflow-x-auto">
-            <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
-                    <tr>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                    </tr>
-                </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                    <!-- Sample data rows - would be replaced with dynamic data in a real application -->
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">001</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">John Doe</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">john.doe@example.com</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">Student</span>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                            <div class="flex space-x-2">
-                                <button class="text-indigo-600 hover:text-indigo-900" title="View">
-                                    <i class="fa-solid fa-eye"></i>
-                                </button>
-                                <button class="text-blue-600 hover:text-blue-900" title="Edit">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </button>
-                                <button class="text-red-600 hover:text-red-900" title="Deactivate">
-                                    <i class="fa-solid fa-user-slash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">002</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Jane Smith</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">jane.smith@example.com</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">Faculty</span>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                            <div class="flex space-x-2">
-                                <button class="text-indigo-600 hover:text-indigo-900" title="View">
-                                    <i class="fa-solid fa-eye"></i>
-                                </button>
-                                <button class="text-blue-600 hover:text-blue-900" title="Edit">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </button>
-                                <button class="text-red-600 hover:text-red-900" title="Deactivate">
-                                    <i class="fa-solid fa-user-slash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">003</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Robert Johnson</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">robert.johnson@example.com</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Staff</span>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Inactive</span>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                            <div class="flex space-x-2">
-                                <button class="text-indigo-600 hover:text-indigo-900" title="View">
-                                    <i class="fa-solid fa-eye"></i>
-                                </button>
-                                <button class="text-blue-600 hover:text-blue-900" title="Edit">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </button>
-                                <button class="text-green-600 hover:text-green-900" title="Activate">
-                                    <i class="fa-solid fa-user-check"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Pagination -->
-        <div class="mt-4 flex items-center justify-between">
-            <div class="flex-1 flex justify-between sm:hidden">
-                <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                    Previous
-                </a>
-                <a href="#" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                    Next
-                </a>
-            </div>
-            <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-                <div>
-                    <p class="text-sm text-gray-700">
-                        Showing <span class="font-medium">1</span> to <span class="font-medium">10</span> of <span class="font-medium">97</span> results
-                    </p>
-                </div>
-                <div>
-                    <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-                        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                            <span class="sr-only">Previous</span>
-                            <i class="fa-solid fa-chevron-left"></i>
-                        </a>
-                        <a href="#" aria-current="page" class="z-10 bg-usepmaroon border-usepmaroon text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium">
-                            1
-                        </a>
-                        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
-                            2
-                        </a>
-                        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
-                            3
-                        </a>
-                        <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
-                            ...
-                        </span>
-                        <a href="#" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
-                            10
-                        </a>
-                        <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                            <span class="sr-only">Next</span>
-                            <i class="fa-solid fa-chevron-right"></i>
-                        </a>
-                    </nav>
-                </div>
-            </div>
+        <!-- Add Button -->
+        <div class="flex justify-end mt-8">
+            <button class="px-8 py-3 bg-usepmaroon text-white rounded-lg hover:bg-usepmaroon/90 flex items-center shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+                <i class="fas fa-save mr-2"></i>Add Staff
+            </button>
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Image Upload Preview
+        const imageUpload = document.getElementById('image-upload');
+        const imagePreview = document.getElementById('image-preview');
+        const previewImage = document.getElementById('preview-image');
+        const imagePlaceholder = document.getElementById('image-placeholder');
+
+        imageUpload.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                // Check file size (max 2MB)
+                if (this.files[0].size > 2 * 1024 * 1024) {
+                    alert('File size exceeds 2MB limit');
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    imagePlaceholder.style.display = 'none';
+                    imagePreview.style.display = 'block';
+                }
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+
+        // Password visibility toggle
+        const passwordInput = document.querySelector('input[type="password"]');
+        const eyeButton = document.querySelector('input[type="password"] + button');
+
+        if (eyeButton) {
+            eyeButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                eyeButton.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+            });
+        }
+    });
+
+    function removeImage() {
+        const imageUpload = document.getElementById('image-upload');
+        const imagePreview = document.getElementById('image-preview');
+        const imagePlaceholder = document.getElementById('image-placeholder');
+
+        imageUpload.value = '';
+        imagePreview.style.display = 'none';
+        imagePlaceholder.style.display = 'flex';
+    }
+</script>

@@ -1,132 +1,192 @@
-<div class="container mx-auto px-4 py-6">
-    <div class="bg-white rounded-lg shadow-md p-6">
-        <h1 class="text-2xl font-bold text-usepmaroon mb-4">Account Management Settings</h1>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    .bg-usepmaroon { background-color: #800000; }
+    .text-usepmaroon { color: #800000; }
+    .bg-usepgold { background-color: #FFD700; }
+    .text-usepgold { color: #FFD700; }
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+    }
+    .modal-content {
+        background: white;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        width: 90%;
+        max-width: 500px;
+        position: relative;
+        box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+    }
+    .close-modal {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-size: 1.5rem;
+        color: #888;
+        cursor: pointer;
+    }
+    .close-modal:hover { color: #800000; }
+</style>
 
-        <div class="mb-6">
-            <p class="text-gray-600">Configure account management settings and permissions.</p>
+
+<body class="bg-gray-50">
+<div class="p-8 max-w-5xl mx-auto">
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold text-usepmaroon">Account Management</h1>
+        <div class="relative">
+            <button id="filterButton" class="flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50">
+                <i class="fas fa-filter mr-2 text-usepmaroon"></i>
+                Filter by Role
+                <i class="fas fa-chevron-down ml-2 text-xs"></i>
+            </button>
+            <div id="filterDropdown" class="hidden absolute right-0 mt-2 w-56 bg-white rounded-md shadow-lg z-10 border border-gray-200">
+                <div class="py-1">
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 filter-option" data-role="all">All Users</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 filter-option" data-role="Admin">Admins</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 filter-option" data-role="Staff">Staff</a>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <!-- Tabs -->
-        <div class="border-b border-gray-200 mb-6">
-            <nav class="-mb-px flex space-x-8">
-                <a href="#" class="border-usepmaroon text-usepmaroon whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" aria-current="page">
-                    General Settings
-                </a>
-                <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
-                    Permissions
-                </a>
-                <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
-                    User Roles
-                </a>
-                <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
-                    Notifications
-                </a>
-            </nav>
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-usepmaroon text-white">
+            <tr>
+                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Name</th>
+                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Position</th>
+                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Email</th>
+                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Role</th>
+                <th class="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider">Actions</th>
+            </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200" id="userTableBody">
+            <tr class="user-row" data-role="Staff">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Lindsay Walton</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Front-end Developer</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">lindsay.walton@example.com</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 role-display">Staff</span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <button onclick="openEditModal('1', 'Lindsay Walton', 'Staff')" class="text-usepmaroon hover:text-usepgold mr-2">
+                        <i class="fas fa-edit"></i> Edit Role
+                    </button>
+                </td>
+            </tr>
+            <tr class="user-row" data-role="Admin">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">John Smith</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">System Administrator</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">john.smith@example.com</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800 role-display">Admin</span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <button onclick="openEditModal('2', 'John Smith', 'Admin')" class="text-usepmaroon hover:text-usepgold mr-2">
+                        <i class="fas fa-edit"></i> Edit Role
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeEditModal()">&times;</span>
+        <h2 class="text-xl font-bold text-usepmaroon mb-4">Edit User Role</h2>
+        <div class="mb-4">
+            <p class="text-gray-600 mb-2">Editing role for: <span id="editUserName" class="font-semibold text-gray-900"></span></p>
+            <p class="text-gray-600">Current role: <span id="currentRole" class="font-semibold text-gray-900"></span></p>
         </div>
-
-        <!-- General Settings Form -->
-        <form class="space-y-6">
+        <form id="editRoleForm" class="space-y-4">
+            <input type="hidden" id="userId">
             <div>
-                <h3 class="text-lg font-medium text-gray-900 mb-4">Account Settings</h3>
-
-                <div class="space-y-4">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <label class="text-sm font-medium text-gray-700">User Registration</label>
-                            <p class="text-sm text-gray-500">Allow new users to register accounts</p>
-                        </div>
-                        <div class="flex items-center">
-                            <button type="button" class="bg-gray-200 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-usepmaroon" role="switch" aria-checked="true">
-                                <span aria-hidden="true" class="translate-x-5 pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"></span>
-                            </button>
-                        </div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Select New Role</label>
+                <div class="mt-1 space-y-2">
+                    <div class="flex items-center">
+                        <input id="role-admin" name="userRole" type="radio" value="Admin" class="h-4 w-4 text-usepmaroon focus:ring-usepmaroon border-gray-300">
+                        <label for="role-admin" class="ml-2 block text-sm text-gray-700">Admin</label>
                     </div>
-
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <label class="text-sm font-medium text-gray-700">Email Verification</label>
-                            <p class="text-sm text-gray-500">Require email verification for new accounts</p>
-                        </div>
-                        <div class="flex items-center">
-                            <button type="button" class="bg-usepmaroon relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-usepmaroon" role="switch" aria-checked="true">
-                                <span aria-hidden="true" class="translate-x-5 pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"></span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <label class="text-sm font-medium text-gray-700">Two-Factor Authentication</label>
-                            <p class="text-sm text-gray-500">Enable two-factor authentication option for users</p>
-                        </div>
-                        <div class="flex items-center">
-                            <button type="button" class="bg-gray-200 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-usepmaroon" role="switch" aria-checked="false">
-                                <span aria-hidden="true" class="translate-x-0 pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"></span>
-                            </button>
-                        </div>
+                    <div class="flex items-center">
+                        <input id="role-staff" name="userRole" type="radio" value="Staff" class="h-4 w-4 text-usepmaroon focus:ring-usepmaroon border-gray-300">
+                        <label for="role-staff" class="ml-2 block text-sm text-gray-700">Staff</label>
                     </div>
                 </div>
             </div>
-
-            <div class="border-t border-gray-200 pt-6">
-                <h3 class="text-lg font-medium text-gray-900 mb-4">Password Policy</h3>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label for="min_password_length" class="block text-sm font-medium text-gray-700 mb-1">Minimum Password Length</label>
-                        <input type="number" id="min_password_length" name="min_password_length" min="6" max="32" value="8" class="w-full rounded-md border-gray-300 shadow-sm focus:border-usepmaroon focus:ring focus:ring-usepmaroon focus:ring-opacity-50">
-                    </div>
-
-                    <div>
-                        <label for="password_expiry_days" class="block text-sm font-medium text-gray-700 mb-1">Password Expiry (Days)</label>
-                        <input type="number" id="password_expiry_days" name="password_expiry_days" min="0" max="365" value="90" class="w-full rounded-md border-gray-300 shadow-sm focus:border-usepmaroon focus:ring focus:ring-usepmaroon focus:ring-opacity-50">
-                        <p class="mt-1 text-xs text-gray-500">Set to 0 for no expiration</p>
-                    </div>
-                </div>
-
-                <div class="mt-4 space-y-2">
-                    <div class="flex items-center">
-                        <input id="require_uppercase" name="require_uppercase" type="checkbox" checked class="h-4 w-4 text-usepmaroon focus:ring-usepmaroon border-gray-300 rounded">
-                        <label for="require_uppercase" class="ml-2 block text-sm text-gray-700">Require at least one uppercase letter</label>
-                    </div>
-
-                    <div class="flex items-center">
-                        <input id="require_number" name="require_number" type="checkbox" checked class="h-4 w-4 text-usepmaroon focus:ring-usepmaroon border-gray-300 rounded">
-                        <label for="require_number" class="ml-2 block text-sm text-gray-700">Require at least one number</label>
-                    </div>
-
-                    <div class="flex items-center">
-                        <input id="require_special" name="require_special" type="checkbox" checked class="h-4 w-4 text-usepmaroon focus:ring-usepmaroon border-gray-300 rounded">
-                        <label for="require_special" class="ml-2 block text-sm text-gray-700">Require at least one special character</label>
-                    </div>
-
-                    <div class="flex items-center">
-                        <input id="prevent_reuse" name="prevent_reuse" type="checkbox" class="h-4 w-4 text-usepmaroon focus:ring-usepmaroon border-gray-300 rounded">
-                        <label for="prevent_reuse" class="ml-2 block text-sm text-gray-700">Prevent reuse of previous passwords</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="border-t border-gray-200 pt-6">
-                <h3 class="text-lg font-medium text-gray-900 mb-4">Account Lockout</h3>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label for="max_login_attempts" class="block text-sm font-medium text-gray-700 mb-1">Maximum Login Attempts</label>
-                        <input type="number" id="max_login_attempts" name="max_login_attempts" min="1" max="10" value="5" class="w-full rounded-md border-gray-300 shadow-sm focus:border-usepmaroon focus:ring focus:ring-usepmaroon focus:ring-opacity-50">
-                    </div>
-
-                    <div>
-                        <label for="lockout_duration" class="block text-sm font-medium text-gray-700 mb-1">Lockout Duration (Minutes)</label>
-                        <input type="number" id="lockout_duration" name="lockout_duration" min="5" max="1440" value="30" class="w-full rounded-md border-gray-300 shadow-sm focus:border-usepmaroon focus:ring focus:ring-usepmaroon focus:ring-opacity-50">
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex justify-end space-x-3">
-                <button type="button" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300">Reset to Defaults</button>
-                <button type="submit" class="px-4 py-2 bg-usepmaroon text-white rounded-md hover:bg-usepmaroon/90">Save Settings</button>
+            <div class="flex justify-end space-x-3 pt-4">
+                <button type="button" onclick="closeEditModal()" class="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">Cancel</button>
+                <button type="submit" class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-usepmaroon hover:bg-usepmaroon/90">Save Changes</button>
             </div>
         </form>
     </div>
 </div>
+
+<script>
+    function openEditModal(userId, userName, currentRole) {
+        document.getElementById("editUserName").textContent = userName;
+        document.getElementById("currentRole").textContent = currentRole;
+        document.getElementById("userId").value = userId;
+        document.querySelector(`input[name="userRole"][value="${currentRole}"]`).checked = true;
+        document.getElementById("editModal").style.display = "flex";
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeEditModal() {
+        document.getElementById("editModal").style.display = "none";
+        document.body.style.overflow = "";
+    }
+
+    document.getElementById("editRoleForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const userId = document.getElementById("userId").value;
+        const newRole = document.querySelector('input[name="userRole"]:checked').value;
+        const row = document.querySelector(`button[onclick*="'${userId}'"]`).closest("tr");
+        const roleDisplay = row.querySelector(".role-display");
+        roleDisplay.textContent = newRole;
+        roleDisplay.className = `px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${newRole === "Admin" ? "bg-red-100 text-red-800" : "bg-blue-100 text-blue-800"} role-display`;
+        row.setAttribute("data-role", newRole);
+        const editButton = row.querySelector("button");
+        const onclickAttr = editButton.getAttribute("onclick");
+        const updatedAttr = onclickAttr.replace(/'Admin'|'Staff'/, `'${newRole}'`);
+        editButton.setAttribute("onclick", updatedAttr);
+        alert(`User role updated to ${newRole} successfully!`);
+        closeEditModal();
+    });
+
+    document.getElementById("filterButton").addEventListener("click", function(e) {
+        e.stopPropagation();
+        document.getElementById("filterDropdown").classList.toggle("hidden");
+    });
+
+    document.querySelectorAll(".filter-option").forEach(option => {
+        option.addEventListener("click", function(e) {
+            e.preventDefault();
+            const role = this.getAttribute("data-role");
+            document.querySelectorAll(".user-row").forEach(row => {
+                if (role === "all" || row.getAttribute("data-role") === role) {
+                    row.classList.remove("hidden");
+                } else {
+                    row.classList.add("hidden");
+                }
+            });
+            document.getElementById("filterDropdown").classList.add("hidden");
+        });
+    });
+
+    document.addEventListener("click", function(e) {
+        const dropdown = document.getElementById("filterDropdown");
+        const filterBtn = document.getElementById("filterButton");
+        if (!dropdown.contains(e.target) && !filterBtn.contains(e.target)) {
+            dropdown.classList.add("hidden");
+        }
+    });
+</script>
+
