@@ -81,8 +81,8 @@ Route::prefix('admin')->group(function () {
     })->name('admin.accounts.manage');
 
     // Other routes - need to be created
-    Route::get('/account-settings', function () {
-        return view('admin.settings'); // resources/views/admin/settings.blade.php
+    Route::get('/accounts/account-settings', function () {
+        return view('accounts.account-settings'); // resources/views/accounts/account-settings.blade.php
     })->name('admin.account-settings');
 
     Route::get('/history', function () {

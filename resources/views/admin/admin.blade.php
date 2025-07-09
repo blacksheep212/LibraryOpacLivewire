@@ -582,6 +582,7 @@
         });
     });
 
+    //Yawa ang Error di masulbad
     function loadAccountSettings() {
         fetch('accountSettingAdmin.html')
             .then(response => response.text())
