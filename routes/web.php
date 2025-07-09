@@ -26,6 +26,22 @@ Route::prefix('admin')->group(function () {
         return view('add.school'); // resources/views/add/school.blade.php
     })->name('admin.add.school');
 
+    Route::get('/add/book', function () {
+        return view('add.book'); // resources/views/add/book.blade.php
+    })->name('admin.add.book');
+
+    Route::get('/add/electronic', function () {
+        return view('add.electronic'); // resources/views/add/electronic.blade.php
+    })->name('admin.add.electronic');
+
+    Route::get('/add/periodical', function () {
+        return view('add.periodical'); // resources/views/add/periodical.blade.php
+    })->name('admin.add.periodical');
+
+    Route::get('/add/thesis', function () {
+        return view('add.thesis'); // resources/views/add/thesis.blade.php
+    })->name('admin.add.thesis');
+
     // Update routes - using your existing files
     Route::get('/update', function () {
         return view('update.update'); // resources/views/update/update.blade.php

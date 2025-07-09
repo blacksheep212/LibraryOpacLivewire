@@ -1,5 +1,6 @@
 
 <form class="space-y-6">
+
     <!-- Book Cover Section at Top -->
     <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
         <label class="block font-medium text-sm text-gray-700 mb-2">Book Cover</label>

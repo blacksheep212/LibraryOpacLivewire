@@ -80,33 +80,46 @@
             books: {
                 title: "Books",
                 icon: "fa-book",
-                content: `{{ route('admin.add.user') }}`
+                url: "{{ route('admin.add.book') }}"
             },
 
             electronic: {
                 title: "Electronic",
                 icon: "fa-laptop-code",
-                content: `renderElectronicForm()`
+                url: "{{ route('admin.add.electronic') }}"
             },
             periodical: {
                 title: "Periodical",
                 icon: "fa-newspaper",
-                content: `renderPeriodicalForm()`
+                url: "{{ route('admin.add.periodical') }}"
             },
 
             thesis: {
                 title: "Thesis",
                 icon: "fa-graduation-cap",
-                content: `renderThesisForm()`
+                url: "{{ route('admin.add.thesis') }}"
             }
         };
         function updateTabContent(tabName) {
             const tab = tabData[tabName];
-            tabContent.innerHTML = `
-            <h3 class="text-lg font-semibold text-usepmaroon mb-4">${tab.title} Form</h3>
-            <div class="text-gray-600">${tab.content}</div>
-        `;
+            tabContent.innerHTML = `<div class="text-gray-600">Loading ${tab.title} form...</div>`;
+
+            if (tab.url) {
+                // Load from Laravel route
+                fetch(tab.url)
+                    .then(response => response.text())
+                    .then(html => {
+                        tabContent.innerHTML = html;
+                    })
+                    .catch(() => {
+                        tabContent.innerHTML = `<div class="text-red-600">Failed to load ${tab.title} form.</div>`;
+                    });
+            } else if (tab.render) {
+                // Render directly via JS
+                tabContent.innerHTML = tab.render();
+            }
         }
+
         function updateMobileTabSelection(tabName) {
             const tab = tabData[tabName];
             mobileTabLabel.innerHTML = `<i class="fas ${tab.icon} mr-2"></i>${tab.title}`;
