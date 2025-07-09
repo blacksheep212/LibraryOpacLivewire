@@ -51,7 +51,7 @@
     <aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-usepmaroon text-white shadow-lg transform -translate-x-full md:translate-x-0 transition-slow flex flex-col z-50">
         <div class="flex items-center justify-between px-6 border-b border-usepgold/50 h-[72px] relative">
             <div class="flex items-center gap-3">
-                <img src="https://laracasts.com/images/logo/logo-triangle.svg" alt="Logo" class="w-10 h-10 rounded md:w-12 md:h-12 transition-slow">
+                <img src="{{ asset('images/usep-logo-small.png') }}"  alt="Logo" class="w-10 h-10 rounded md:w-12 md:h-12 transition-slow">
                 <span class="text-xl md:text-2xl font-medium logo-text transition-slow">USeP Library</span>
             </div>
             <button id="closeBtn" class="md:hidden text-white hover:text-usepgold text-2xl transition-slow">
@@ -161,8 +161,9 @@
                 </button>
                 <div class="relative">
                     <div id="profile-trigger" class="flex items-center gap-2 cursor-pointer">
-                        <img src="https://laracasts.com/images/lary-ai-face.svg" alt="User" class="w-8 h-8 rounded-full border-2 border-white shadow"/>
-                        <span class="hidden md:block font-medium text-usepmaroon">John Doe</span>
+
+                        <img src="{{ asset('images/admin-logo.png') }}" alt="User" class="w-8 h-8 rounded-full border-2 border-white shadow"/>
+                        <span class="hidden md:block font-medium text-usepmaroon">Doms R</span>
                         <i class="fa-solid fa-chevron-down text-xs ml-1 text-usepmaroon"></i>
                     </div>
                     <div id="profile-dropdown" class="profile-dropdown absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
