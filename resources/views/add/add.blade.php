@@ -59,10 +59,10 @@
 <!-- Form Actions -->
 <div class="pt-6 flex justify-end space-x-3">
     <button type="button" class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-2 rounded text-sm">
-        <i class="fas fa-times mr-2"></i>Cancel
+        <i class="fas fa-times mr-2"></i>Clear
     </button>
     <button type="submit" class="bg-usepmaroon hover:bg-red-900 text-white px-6 py-2 rounded text-sm">
-        <i class="fas fa-save mr-2"></i>Save
+        <i class="fas fa-save mr-2"></i>Add
     </button>
 </div>
 

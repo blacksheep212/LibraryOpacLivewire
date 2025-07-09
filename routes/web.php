@@ -47,6 +47,22 @@ Route::prefix('admin')->group(function () {
         return view('update.update'); // resources/views/update/update.blade.php
     })->name('admin.update');
 
+    Route::get('/update/book', function () {
+        return view('update.book'); // resources/views/update/book.blade.php
+    })->name('admin.update.book');
+
+    Route::get('/update/electronic', function () {
+        return view('update.electronic'); // resources/views/update/electronic.blade.php
+    })->name('admin.update.electronic');
+
+    Route::get('/update/periodical', function () {
+        return view('update.periodical'); // resources/views/update/periodical.blade.php
+    })->name('admin.update.periodical');
+
+    Route::get('/update/thesis', function () {
+        return view('update.thesis'); // resources/views/update/thesis.blade.php
+    })->name('admin.update.thesis');
+
     Route::get('/update/user', function () {
         return view('update.user'); // resources/views/update/user.blade.php
     })->name('admin.update.user');
