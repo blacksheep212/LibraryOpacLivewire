@@ -513,7 +513,7 @@
             activeSubMenu = this.getAttribute('data-page');
             const page = this.getAttribute('data-page');
             if (page === 'updateUser') {
-                fetch('updateUser.html')
+                fetch('{{ route('admin.update.user') }}')
                     .then(response => response.text())
                     .then(html => {
                         contentContainer.innerHTML = html;
@@ -566,7 +566,7 @@
             activeSubMenu = this.getAttribute('data-page');
             const page = this.getAttribute('data-page');
             if (page === 'manageAccounts') {
-                fetch('{{ route('admin.accounts') }}')
+                fetch('{{ route('admin.accounts.manage') }}')
                     .then(response => response.text())
                     .then(html => {
                         contentContainer.innerHTML = html;
@@ -649,7 +649,7 @@
     }
 
     function loadAccountsContent() {
-        fetch('accounts.html')
+        fetch('{{ route('admin.accounts') }}')
             .then(response => response.text())
             .then(html => {
                 contentContainer.innerHTML = html;
