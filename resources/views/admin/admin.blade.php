@@ -51,7 +51,7 @@
     <aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-usepmaroon text-white shadow-lg transform -translate-x-full md:translate-x-0 transition-slow flex flex-col z-50">
         <div class="flex items-center justify-between px-6 border-b border-usepgold/50 h-[72px] relative">
             <div class="flex items-center gap-3">
-                <img src="{{ asset('landing_page/images/usep-logo-small.png') }}" alt="Logo" class="w-10 h-10 rounded md:w-12 md:h-12 transition-slow">
+                <img src="https://laracasts.com/images/logo/logo-triangle.svg" alt="Logo" class="w-10 h-10 rounded md:w-12 md:h-12 transition-slow">
                 <span class="text-xl md:text-2xl font-medium logo-text transition-slow">USeP Library</span>
             </div>
             <button id="closeBtn" class="md:hidden text-white hover:text-usepgold text-2xl transition-slow">
@@ -161,7 +161,7 @@
                 </button>
                 <div class="relative">
                     <div id="profile-trigger" class="flex items-center gap-2 cursor-pointer">
-                        <img src="https://via.placeholder.com/40/800000/ffffff?text=JD" alt="User" class="w-8 h-8 rounded-full border-2 border-white shadow"/>
+                        <img src="https://laracasts.com/images/lary-ai-face.svg" alt="User" class="w-8 h-8 rounded-full border-2 border-white shadow"/>
                         <span class="hidden md:block font-medium text-usepmaroon">John Doe</span>
                         <i class="fa-solid fa-chevron-down text-xs ml-1 text-usepmaroon"></i>
                     </div>
@@ -472,7 +472,7 @@
             activeSubMenu = this.getAttribute('data-page');
             const page = this.getAttribute('data-page');
             if (page === 'user') {
-                fetch('user.html')
+                fetch('{{ route('admin.add.user') }}')
                     .then(response => response.text())
                     .then(html => {
                         contentContainer.innerHTML = html;
@@ -481,7 +481,7 @@
                         toggleSubmenu('addMenuBtn', true);
                     });
             } else if (page === 'school') {
-                fetch('school.html')
+                fetch('{{ route('admin.add.school') }}')
                     .then(response => response.text())
                     .then(html => {
                         contentContainer.innerHTML = html;
@@ -566,7 +566,7 @@
             activeSubMenu = this.getAttribute('data-page');
             const page = this.getAttribute('data-page');
             if (page === 'manageAccounts') {
-                fetch('manageAccount.html')
+                fetch('{{ route('admin.accounts') }}')
                     .then(response => response.text())
                     .then(html => {
                         contentContainer.innerHTML = html;
@@ -603,7 +603,7 @@
     }
 
     function loadAddContent(page) {
-        fetch('add.html')
+        fetch('{{ route('admin.add') }}')
             .then(response => response.text())
             .then(html => {
                 contentContainer.innerHTML = html;
@@ -626,7 +626,7 @@
     }
 
     function loadUpdateContent(page) {
-        fetch('update.html')
+        fetch('{{ route('admin.update') }}')
             .then(response => response.text())
             .then(html => {
                 contentContainer.innerHTML = html;

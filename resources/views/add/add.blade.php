@@ -80,7 +80,7 @@
             books: {
                 title: "Books",
                 icon: "fa-book",
-                content: `renderBooksForm()`
+                content: `{{ route('admin.add.user') }}`
             },
 
             electronic: {
