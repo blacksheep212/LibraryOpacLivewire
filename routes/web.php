@@ -2,11 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Redirect root URL to the admin dashboard
+Route::get('/', function () {
+    return redirect()->route('admin.dashboard');
+});
+
 Route::prefix('admin')->group(function () {
     // Dashboard - points to existing admin.blade.php
     Route::get('/', function () {
         return view('admin.admin'); // resources/views/admin/admin.blade.php
-    })->name('admin.dashboard'); // Changed to match your navigation
+    })->name('admin.dashboard');
 
     // Add routes - adjusted to match your actual files
     Route::get('/add', function () {
@@ -45,10 +50,10 @@ Route::prefix('admin')->group(function () {
 
     // Other routes - need to be created
     Route::get('/account-settings', function () {
-        return view('admin.settings'); // Need to create resources/views/admin/settings.blade.php
+        return view('admin.settings'); // resources/views/admin/settings.blade.php
     })->name('admin.account-settings');
 
     Route::get('/history', function () {
-        return view('admin.history'); // Need to create resources/views/admin/history.blade.php
+        return view('admin.history'); // resources/views/admin/history.blade.php
     })->name('admin.history');
 });

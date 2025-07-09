@@ -69,7 +69,7 @@
             </a>
             <!-- Add with dropdown  -->
             <div class="relative has-submenu">
-                <a href="{{ route('admin.add.add') }}" id="addMenuBtn" class="nav-item {{ request()->routeIs('admin.add.*') ? 'active' : '' }} flex items-center justify-between px-3 py-2.5 md:py-3 rounded-lg hover:bg-usepmaroon/90 transition-slow">
+                <a href="{{ route('admin.add') }}" id="addMenuBtn" class="nav-item {{ request()->routeIs('admin.add.*') ? 'active' : '' }} flex items-center justify-between px-3 py-2.5 md:py-3 rounded-lg hover:bg-usepmaroon/90 transition-slow">
                     <div class="flex items-center gap-3">
                         <i class="fa-solid fa-square-plus w-6 text-center text-white md:text-xl"></i>
                         <span class="nav-text font-medium md:text-lg">Add</span>
