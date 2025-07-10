@@ -105,7 +105,7 @@ Route::prefix('admin')->group(function () {
         return view('accounts.account-settings'); // resources/views/accounts/account-settings.blade.php
     })->name('admin.account-settings');
 
-    Route::get('/history', function () {
-        return view('admin.history'); // resources/views/admin/history.blade.php
+    Route::get('/accounts/history', function () {
+        return view('accounts.history'); // resources/views/admin/history.blade.php
     })->name('admin.history');
 });
