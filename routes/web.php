@@ -72,23 +72,23 @@ Route::prefix('admin')->group(function () {
     })->name('admin.update.school-info');
 
     //collges
-    Route::get ('/update/updateSchool/updateColleges',function () {
-        return view('update.updateSchool.updateColleges'); // resources/views/update/updateSchool/updateColleges.blade.php
-    })->name('admin.update.updateSchool.updateColleges');
+    Route::get ('/update/updateCollege',function () {
+        return view('update.updateCollege'); // resources/views/update/updateCollege.blade.php
+    })->name('admin.update.updateCollege');
 
     //departments
-    Route::get ('/update/updateSchool/updateDepartments',function () {
-        return view('update.updateSchool.updateDepartments'); // resources/views/update/updateSchool/updateDepartments.blade.php
-    })->name('admin.update.updateSchool.updateDepartments');
+    Route::get ('/update/updateDepartment',function () {
+        return view('update.updateDepartment'); // resources/views/update/updateDepartment.blade.php
+    })->name('admin.update.updateDepartment');
 
     //offices
-    Route::get ('/update/updateSchool/updateOffices',function () {
-        return view('update.updateSchool.updateOffices'); // resources/views/update/updateSchool/updateOffices.blade.php
-    })->name('admin.update.updateSchool.updateOffices');
+    Route::get ('/update/updateOffice',function () {
+        return view('update.updateOffice'); // resources/views/update/updateOffice.blade.php
+    })->name('admin.update.updateOffice');
 
-    Route::get ('/update/updateSchool/updatePrograms',function () {
-        return view('update.updateSchool.updatePrograms'); //resources/views/update/updateSchool/updatePrograms.blade.php
-    })->name('admin.update.updateSchool.updatePrograms');
+    Route::get ('/update/updateProgram',function () {
+        return view('update.updateProgram'); //resources/views/update/updateProgram.blade.php
+    })->name('admin.update.updateProgram');
 
 
     // Account routes - using your existing files

@@ -523,7 +523,7 @@
                         toggleSubmenu('updateMenuBtn', true);
                     });
             } else if (page === 'updateSchoolInfo') {
-                fetch('updateSchoolInfrmation.html')
+                fetch('{{ route('admin.update.school-info') }}')
                     .then(response => response.text())
                     .then(html => {
                         contentContainer.innerHTML = html;

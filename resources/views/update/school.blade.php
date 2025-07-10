@@ -88,7 +88,7 @@
     </div>
     <div class="pt-4 flex justify-end">
         <button type="submit" class="bg-usepmaroon text-white px-6 py-2 rounded hover:bg-red-900">
-            <i class="fas fa-save mr-2"></i>Save
+            <i class="fas fa-save mr-2"></i>Update
         </button>
     </div>
 
@@ -109,35 +109,47 @@
             colleges: {
                 title: "Colleges",
                 icon: "fa-building",
-                url: "{{route('admin.update.updateSchool.updateColleges') }}"
+                url: "{{ route('admin.update.updateCollege') }}"
             },
 
 
             departments: {
                 title: "Departments",
                 icon: "fa-sitemap",
-                url: "{{route('admin.update.updateSchool.updateDepartments') }}"
+                url: "{{ route('admin.update.updateDepartment') }}"
             },
 
             programs: {
                 title: "Programs",
                 icon: "fa-graduation-cap",
-                url: "{{route('admin.update.updateSchool.updatePrograms') }}"
+                url: "{{ route('admin.update.updateProgram') }}"
             },
 
             office: {
                 title: "Office",
                 icon: "fa-briefcase",
-                url: "{{route('admin.update.updateSchool.updateOffice') }}"
+                url: "{{ route('admin.update.updateOffice') }}"
             }
         };
 
         function updateTabContent(tabName) {
             const tab = tabData[tabName];
-            tabContent.innerHTML = `
-                <h3 class="text-lg font-semibold text-usepmaroon mb-4">${tab.title} Management</h3>
-                <div class="text-gray-600">${tab.content}</div>
-            `;
+            tabContent.innerHTML = `<div class="text-gray-600">Loading ${tab.title} form...</div>`;
+
+            if (tab.url) {
+                // Load from Laravel route
+                fetch(tab.url)
+                    .then(response => response.text())
+                    .then(html => {
+                        tabContent.innerHTML = html;
+                    })
+                    .catch(() => {
+                        tabContent.innerHTML = `<div class="text-red-600">Failed to load ${tab.title} form.</div>`;
+                    });
+            } else if (tab.render) {
+                // Render directly via JS
+                tabContent.innerHTML = tab.render();
+            }
         }
 
         function updateMobileTabSelection(tabName) {
