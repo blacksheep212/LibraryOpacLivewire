@@ -1,100 +1,242 @@
-<div class="container mx-auto px-4 py-6">
-    <div class="bg-white rounded-lg shadow-md p-6">
-        <h1 class="text-2xl font-bold text-usepmaroon mb-4">Update School Information</h1>
+<style>
+    tr:nth-child(even) { background-color: #dddddd;}
+    table{border-radius: 20px;}
+</style>
 
-        <div class="mb-6">
-            <p class="text-gray-600">Use this form to update existing school information in the system.</p>
+
+<div id="add-content">
+    <h2 class="text-2xl font-bold text-usepmaroon mb-4">Update School Information</h2>
+
+    <!-- Desktop Tabs -->
+    <div class="desktop-tabs bg-gray-100 rounded-lg p-1 mb-6 overflow-hidden hidden md:block">
+        <div class="flex">
+            <button data-tab="colleges" class="desktop-tab flex-1 py-3 px-4 text-center active-tab">
+                <i class="fas fa-building mr-2"></i>Colleges
+            </button>
+            <button data-tab="departments" class="desktop-tab flex-1 py-3 px-4 text-center">
+                <i class="fas fa-sitemap mr-2"></i>Departments
+            </button>
+            <button data-tab="programs" class="desktop-tab flex-1 py-3 px-4 text-center">
+                <i class="fas fa-graduation-cap mr-2"></i>Programs
+            </button>
+            <button data-tab="office" class="desktop-tab flex-1 py-3 px-4 text-center">
+                <i class="fas fa-briefcase mr-2"></i>Office
+            </button>
         </div>
-
-        <div class="mb-6">
-            <label for="school_search" class="block text-sm font-medium text-gray-700 mb-1">Search School</label>
-            <div class="flex">
-                <input type="text" id="school_search" name="school_search" placeholder="Enter school ID, name, or code" class="flex-1 rounded-l-md border-gray-300 shadow-sm focus:border-usepmaroon focus:ring focus:ring-usepmaroon focus:ring-opacity-50">
-                <button type="button" class="bg-usepmaroon text-white px-4 py-2 rounded-r-md hover:bg-usepmaroon/90">
-                    <i class="fa-solid fa-search"></i>
-                </button>
-            </div>
-        </div>
-
-        <form class="space-y-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <label for="school_id" class="block text-sm font-medium text-gray-700 mb-1">School ID</label>
-                    <input type="text" id="school_id" name="school_id" class="w-full rounded-md border-gray-300 shadow-sm focus:border-usepmaroon focus:ring focus:ring-usepmaroon focus:ring-opacity-50" readonly>
-                </div>
-
-                <div>
-                    <label for="school_code" class="block text-sm font-medium text-gray-700 mb-1">School Code</label>
-                    <input type="text" id="school_code" name="school_code" class="w-full rounded-md border-gray-300 shadow-sm focus:border-usepmaroon focus:ring focus:ring-usepmaroon focus:ring-opacity-50">
-                </div>
-            </div>
-
-            <div>
-                <label for="school_name" class="block text-sm font-medium text-gray-700 mb-1">School Name</label>
-                <input type="text" id="school_name" name="school_name" class="w-full rounded-md border-gray-300 shadow-sm focus:border-usepmaroon focus:ring focus:ring-usepmaroon focus:ring-opacity-50">
-            </div>
-
-            <div>
-                <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Address</label>
-                <textarea id="address" name="address" rows="3" class="w-full rounded-md border-gray-300 shadow-sm focus:border-usepmaroon focus:ring focus:ring-usepmaroon focus:ring-opacity-50"></textarea>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div>
-                    <label for="city" class="block text-sm font-medium text-gray-700 mb-1">City</label>
-                    <input type="text" id="city" name="city" class="w-full rounded-md border-gray-300 shadow-sm focus:border-usepmaroon focus:ring focus:ring-usepmaroon focus:ring-opacity-50">
-                </div>
-
-                <div>
-                    <label for="province" class="block text-sm font-medium text-gray-700 mb-1">Province</label>
-                    <input type="text" id="province" name="province" class="w-full rounded-md border-gray-300 shadow-sm focus:border-usepmaroon focus:ring focus:ring-usepmaroon focus:ring-opacity-50">
-                </div>
-
-                <div>
-                    <label for="postal_code" class="block text-sm font-medium text-gray-700 mb-1">Postal Code</label>
-                    <input type="text" id="postal_code" name="postal_code" class="w-full rounded-md border-gray-300 shadow-sm focus:border-usepmaroon focus:ring focus:ring-usepmaroon focus:ring-opacity-50">
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <label for="contact_number" class="block text-sm font-medium text-gray-700 mb-1">Contact Number</label>
-                    <input type="tel" id="contact_number" name="contact_number" class="w-full rounded-md border-gray-300 shadow-sm focus:border-usepmaroon focus:ring focus:ring-usepmaroon focus:ring-opacity-50">
-                </div>
-
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                    <input type="email" id="email" name="email" class="w-full rounded-md border-gray-300 shadow-sm focus:border-usepmaroon focus:ring focus:ring-usepmaroon focus:ring-opacity-50">
-                </div>
-            </div>
-
-            <div>
-                <label for="school_type" class="block text-sm font-medium text-gray-700 mb-1">School Type</label>
-                <select id="school_type" name="school_type" class="w-full rounded-md border-gray-300 shadow-sm focus:border-usepmaroon focus:ring focus:ring-usepmaroon focus:ring-opacity-50">
-                    <option value="">Select school type</option>
-                    <option value="public">Public</option>
-                    <option value="private">Private</option>
-                    <option value="state">State University/College</option>
-                </select>
-            </div>
-
-            <div>
-                <label for="status" class="block text-sm font-medium text-gray-700 mb-1">Status</label>
-                <select id="status" name="status" class="w-full rounded-md border-gray-300 shadow-sm focus:border-usepmaroon focus:ring focus:ring-usepmaroon focus:ring-opacity-50">
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
-                </select>
-            </div>
-
-            <div>
-                <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                <textarea id="description" name="description" rows="4" class="w-full rounded-md border-gray-300 shadow-sm focus:border-usepmaroon focus:ring focus:ring-usepmaroon focus:ring-opacity-50"></textarea>
-            </div>
-
-            <div class="flex justify-end space-x-3">
-                <button type="button" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300">Cancel</button>
-                <button type="submit" class="px-4 py-2 bg-usepmaroon text-white rounded-md hover:bg-usepmaroon/90">Update School</button>
-            </div>
-        </form>
     </div>
+
+    <!-- Mobile Dropdown -->
+    <div class="mobile-dropdown mb-6 block md:hidden">
+        <button class="w-full bg-gray-100 py-3 px-4 rounded-lg flex justify-between items-center border border-gray-300">
+            <span id="mobile-tab-label">
+                <i class="fas fa-building mr-2"></i>Colleges
+            </span>
+            <i id="dropdown-chevron" class="fas fa-chevron-down transition-transform"></i>
+        </button>
+        <div id="mobile-dropdown-content" class="mobile-dropdown-content bg-white border border-gray-200 rounded-b-lg shadow-sm hidden">
+            <button data-tab="colleges" class="mobile-tab-option w-full text-left py-3 px-4 flex items-center border-b border-gray-100">
+                <i class="fas fa-building mr-3 text-usepmaroon"></i>Colleges
+                <span id="mobile-tab-1-check" class="ml-auto text-usepmaroon">
+                    <i class="fas fa-check"></i>
+                </span>
+            </button>
+            <button data-tab="departments" class="mobile-tab-option w-full text-left py-3 px-4 flex items-center border-b border-gray-100">
+                <i class="fas fa-sitemap mr-3 text-usepmaroon"></i>Departments
+                <span id="mobile-tab-2-check" class="ml-auto text-usepmaroon opacity-0">
+                    <i class="fas fa-check"></i>
+                </span>
+            </button>
+            <button data-tab="programs" class="mobile-tab-option w-full text-left py-3 px-4 flex items-center border-b border-gray-100">
+                <i class="fas fa-graduation-cap mr-3 text-usepmaroon"></i>Programs
+                <span id="mobile-tab-3-check" class="ml-auto text-usepmaroon opacity-0">
+                    <i class="fas fa-check"></i>
+                </span>
+            </button>
+            <button data-tab="office" class="mobile-tab-option w-full text-left py-3 px-4 flex items-center">
+                <i class="fas fa-briefcase mr-3 text-usepmaroon"></i>Office
+                <span id="mobile-tab-4-check" class="ml-auto text-usepmaroon opacity-0">
+                    <i class="fas fa-check"></i>
+                </span>
+            </button>
+        </div>
+    </div>
+
+    <div id="tab-content" class="p-4 border border-gray-200 rounded-lg">
+        Loading colleges content...
+    </div>
+    <div class="flex items-center justify-between mt-6">
+        <div class="text-sm text-gray-600">
+            Showing <span class="font-medium">1</span> to <span class="font-medium">5</span> of <span class="font-medium">12</span> entries
+        </div>
+        <div class="flex space-x-2">
+            <button class="px-3 py-1 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-50">
+                Previous
+            </button>
+            <button class="px-3 py-1 bg-usepmaroon text-white rounded-md hover:bg-usepmaroon/90">
+                1
+            </button>
+            <button class="px-3 py-1 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-50">
+                2
+            </button>
+            <button class="px-3 py-1 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-50">
+                3
+            </button>
+            <button class="px-3 py-1 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-50">
+                Next
+            </button>
+        </div>
+    </div>
+    <div class="pt-4 flex justify-end">
+        <button type="submit" class="bg-usepmaroon text-white px-6 py-2 rounded hover:bg-red-900">
+            <i class="fas fa-save mr-2"></i>Save
+        </button>
+    </div>
+
 </div>
+
+<script>
+    function initAddTabs(container) {
+        let activeTab = 'colleges';
+        const desktopTabs = container.querySelectorAll('.desktop-tab');
+        const mobileTabOptions = container.querySelectorAll('.mobile-tab-option');
+        const mobileDropdownButton = container.querySelector('.mobile-dropdown button');
+        const mobileDropdownContent = container.querySelector('#mobile-dropdown-content');
+        const dropdownChevron = container.querySelector('#dropdown-chevron');
+        const mobileTabLabel = container.querySelector('#mobile-tab-label');
+        const tabContent = container.querySelector('#tab-content');
+
+        const tabData = {
+            colleges: {
+                title: "Colleges",
+                icon: "fa-building",
+                url: "{{route('admin.update.updateSchool.updateColleges') }}"
+            },
+
+
+            departments: {
+                title: "Departments",
+                icon: "fa-sitemap",
+                url: "{{route('admin.update.updateSchool.updateDepartments') }}"
+            },
+
+            programs: {
+                title: "Programs",
+                icon: "fa-graduation-cap",
+                url: "{{route('admin.update.updateSchool.updatePrograms') }}"
+            },
+
+            office: {
+                title: "Office",
+                icon: "fa-briefcase",
+                url: "{{route('admin.update.updateSchool.updateOffice') }}"
+            }
+        };
+
+        function updateTabContent(tabName) {
+            const tab = tabData[tabName];
+            tabContent.innerHTML = `
+                <h3 class="text-lg font-semibold text-usepmaroon mb-4">${tab.title} Management</h3>
+                <div class="text-gray-600">${tab.content}</div>
+            `;
+        }
+
+        function updateMobileTabSelection(tabName) {
+            const tab = tabData[tabName];
+            mobileTabLabel.innerHTML = `<i class="fas ${tab.icon} mr-2"></i>${tab.title}`;
+
+            mobileTabOptions.forEach((option, index) => {
+                const checkSpan = container.querySelector(`#mobile-tab-${index+1}-check`);
+                if (option.getAttribute('data-tab') === tabName) {
+                    checkSpan.classList.remove('opacity-0');
+                } else {
+                    checkSpan.classList.add('opacity-0');
+                }
+            });
+        }
+
+        function toggleMobileDropdown() {
+            mobileDropdownContent.classList.toggle('hidden');
+            dropdownChevron.classList.toggle('rotate-180');
+        }
+
+        function switchTab(tabName) {
+            if (activeTab === tabName) return;
+
+            activeTab = tabName;
+
+            // Update desktop tabs
+            desktopTabs.forEach(tab => {
+                if (tab.getAttribute('data-tab') === tabName) {
+                    tab.classList.add('active-tab');
+                } else {
+                    tab.classList.remove('active-tab');
+                }
+            });
+
+            // Update mobile dropdown
+            updateMobileTabSelection(tabName);
+
+            // Update content
+            updateTabContent(tabName);
+        }
+
+        // Set up event listeners
+        desktopTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabName = this.getAttribute('data-tab');
+                switchTab(tabName);
+            });
+        });
+
+        mobileTabOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                const tabName = this.getAttribute('data-tab');
+                switchTab(tabName);
+                toggleMobileDropdown();
+            });
+        });
+
+        mobileDropdownButton.addEventListener('click', toggleMobileDropdown);
+
+        // Initialize first tab
+        updateMobileTabSelection(activeTab);
+        updateTabContent(activeTab);
+    }
+
+    // Initialize the tabs when the page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        const container = document.getElementById('add-content');
+        initAddTabs(container);
+    });
+</script>
+
+<style>
+    .desktop-tab {
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .desktop-tab.active-tab {
+        background-color: white;
+        color: #800000; /* USEP maroon color */
+        font-weight: 600;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .mobile-dropdown-content {
+        transition: all 0.3s ease;
+    }
+
+    .rotate-180 {
+        transform: rotate(180deg);
+    }
+
+    @media (min-width: 768px) {
+        .mobile-dropdown {
+            display: none;
+        }
+        .desktop-tabs {
+            display: block;
+        }
+    }
+</style>

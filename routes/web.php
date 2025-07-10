@@ -71,6 +71,26 @@ Route::prefix('admin')->group(function () {
         return view('update.school'); // resources/views/update/school.blade.php
     })->name('admin.update.school-info');
 
+    //collges
+    Route::get ('/update/updateSchool/updateColleges',function () {
+        return view('update.updateSchool.updateColleges'); // resources/views/update/updateSchool/updateColleges.blade.php
+    })->name('admin.update.updateSchool.updateColleges');
+
+    //departments
+    Route::get ('/update/updateSchool/updateDepartments',function () {
+        return view('update.updateSchool.updateDepartments'); // resources/views/update/updateSchool/updateDepartments.blade.php
+    })->name('admin.update.updateSchool.updateDepartments');
+
+    //offices
+    Route::get ('/update/updateSchool/updateOffices',function () {
+        return view('update.updateSchool.updateOffices'); // resources/views/update/updateSchool/updateOffices.blade.php
+    })->name('admin.update.updateSchool.updateOffices');
+
+    Route::get ('/update/updateSchool/updatePrograms',function () {
+        return view('update.updateSchool.updatePrograms'); //resources/views/update/updateSchool/updatePrograms.blade.php
+    })->name('admin.update.updateSchool.updatePrograms');
+
+
     // Account routes - using your existing files
     Route::get('/accounts', function () {
         return view('accounts.account'); // resources/views/accounts/account.blade.php
