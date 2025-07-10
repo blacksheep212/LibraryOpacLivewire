@@ -1,18 +1,8 @@
 <form class="space-y-6">
     <div class="flex flex-col sm:flex-row flex-wrap items-center gap-2 md:gap-4 ">
-        <div class="relative w-full md:w-96">
-            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <i class="fas fa-search text-gray-400"></i>
-            </div>
-            <input type="text" class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-usepmaroon focus:border-usepmaroon shadow-sm input-focus transition" placeholder="Search books...">
-        </div>
-        <button class="px-5 py-2.5 bg-usepmaroon text-white rounded-lg hover:bg-usepmaroon/90 flex items-center justify-center shadow-sm transition-all hover:shadow-md">
-            <i class="fas fa-search mr-2"></i>Search
-        </button>
-        <div class="flex-grow"></div>
-        <button class="px-5 py-2.5 bg-usepmaroon text-white rounded-lg hover:bg-usepmaroon/90 flex items-center justify-center shadow-sm transition-all hover:shadow-md">
-            <i class="fas fa-barcode mr-2"></i>Scan
-        </button>
+
+
+
     </div>
     <!-- Book Cover Section at Top -->
     <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">

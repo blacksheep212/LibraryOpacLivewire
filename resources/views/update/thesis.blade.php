@@ -6,12 +6,28 @@
             </div>
             <input type="text" class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-usepmaroon focus:border-usepmaroon shadow-sm input-focus transition" placeholder="Search books...">
         </div>
-        <button class="px-5 py-2.5 bg-usepmaroon text-white rounded-lg hover:bg-usepmaroon/90 flex items-center justify-center shadow-sm transition-all hover:shadow-md">
-            <i class="fas fa-search mr-2"></i>Search
-        </button>
-        <div class="flex-grow"></div>
-        <button class="px-5 py-2.5 bg-usepmaroon text-white rounded-lg hover:bg-usepmaroon/90 flex items-center justify-center shadow-sm transition-all hover:shadow-md">
-            <i class="fas fa-barcode mr-2"></i>Scan
+        <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 w-full sm:w-auto">
+            <!-- Search Button -->
+            <button class="relative group px-4 py-2.5 bg-usepmaroon text-white rounded-lg hover:bg-usepmaroon/90 flex items-center justify-center shadow-sm transition-all hover:shadow-md w-full sm:w-auto">
+                <i class="fas fa-search sm:mr-2"></i>
+                <span class="hidden sm:inline">Search</span>
+                <span class="sm:hidden absolute inset-0 flex items-center justify-center">
+            <i class="fas fa-search"></i>
+        </span>
+            </button>
+
+            <!-- Spacer - only on desktop -->
+            <div class="hidden sm:block flex-grow"></div>
+
+            <!-- Scan Button -->
+            <button class="relative group px-4 py-2.5 bg-usepmaroon text-white rounded-lg hover:bg-usepmaroon/90 flex items-center justify-center shadow-sm transition-all hover:shadow-md w-full sm:w-auto">
+                <i class="fas fa-barcode sm:mr-2"></i>
+                <span class="hidden sm:inline">Scan</span>
+                <span class="sm:hidden absolute inset-0 flex items-center justify-center">
+            <i class="fas fa-barcode"></i>
+        </span>
+            </button>
+        </div>
         </button>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
