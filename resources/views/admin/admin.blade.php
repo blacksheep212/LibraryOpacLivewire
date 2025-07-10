@@ -155,10 +155,6 @@
                 </button>
             </div>
             <div class="flex items-center gap-6">
-                <button class="relative text-gray-600 hover:text-usepmaroon transition-slow">
-                    <i class="fa-solid fa-bell text-xl"></i>
-                    <span class="absolute -top-1 -right-2 bg-usepmaroon text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">3</span>
-                </button>
                 <div class="relative">
                     <div id="profile-trigger" class="flex items-center gap-2 cursor-pointer">
 
